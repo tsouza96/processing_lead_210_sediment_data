@@ -81,6 +81,11 @@ for i = 1 : numFiles
     data.counts_209_210 = counts_209_210;
     data.cpm_209_210 = (counts_209_210/mcadat.livetime)*60 - [det_bkgrnds.Po_209(det_idx) det_bkgrnds.Po_210(det_idx)];
     data.Po_210_dpm_g = ((data.cpm_209_210(2)/data.cpm_209_210(1))*(10*1))/(core_data.FineMassAddedToTube_g_(i)); % (Po210/Po209)*(tracer_activity_dpm*pipette_mL)/(samplemass_mg/1000)
+    data.cpm_error_209_210 = [det_bkgrnds.Po_209_err(det_idx) det_bkgrnds.Po_210_err(det_idx)];
+    %     sqrt(((Po_209_net_cpm/Po_210_net_cpm)*sqrt((([Po_210_net_cpm_error/Po_210_net_cpm])^2)+(([Po_09_net_cpm_error/Po_209_net_cpm])^2))^2/[Po-210_dpm/g_]^2)+(([tracer_activity_dpm_error^2)/([tracer_activity_dpm]^2))+(([pipette(mL)error]^2)/([pipette(mL)]^2]))+(((.005*[sample_mass_mg_error])^2)/([sample_mass_mg(i)]^2)))
+    data.Po_210_dpm_g_error = sqrt(((data.cpm_209_210(1)/data.cpm_209_210(2))*sqrt(((data.cpm_error_209_210(2)/data.cpm_209_210(2))^2)+((data.cpm_error_209_210(1)/data.cpm_209_210(1))^2))^2/data.Po_210_dpm_g(1)^2)+((.719859^2)/(10^2))+((.001812^2)/(1^2))+(((.005*core_data.FineMassAddedToTube_g_(i))^2)/((core_data.FineMassAddedToTube_g_(i))^2)));
+    %     data.yield = =((Po_209_net_cpm)/(det_bkgrnds.total_alpha_3_8(det_idx)))/(tracer_activity*pipette_vol))*100);
+    data.yield = (((data.cpm_209_210(1)/(det_bkgrnds.total_alpha_3_8(det_idx)))/(10*1))*100);
     data.name = extractAfter((string(mcadat.filename)),106); % change character # to extract after depending on your filename length
     data.detector = mcadat.detector;
     data.all = mcadat;
