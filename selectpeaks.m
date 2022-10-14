@@ -50,10 +50,10 @@ fullFileNames = fds.Files;
 numFiles = length(fullFileNames);
 
 disp("Add Detector Background File (with regions of interest for each peak included)")
-det_bkgrnd_file = uigetfile('/*.TXT'); %add detector background file
+det_bkgrnd_file = uigetfile('/*.TXT;*.TSV'); %add detector background file
 det_bkgrnds = readtable(det_bkgrnd_file);
 disp("Add Core Data File [with Depth(cm), Sediment added to vial (g)]")
-core_data_file = uigetfile('/*.TXT');
+core_data_file = uigetfile('/*.TXT;*.TSV');
 core_data = readtable(core_data_file);
 
 % Loop over all files in d reading them in
