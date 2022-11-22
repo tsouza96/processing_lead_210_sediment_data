@@ -51,21 +51,23 @@ end
 
 if any((filetype ~= "chn") & (filetype ~= "spe"))
     fprintf("ERROR: Filetype not supported or too few inputs")
+    return
 end
 
 if filetype == "chn"
     disp("Select folder with .CHN files to count peaks from (one core only)")
     spectrum_files = uigetdir(); %add CHN spectrum file directory
-    fds = fileDatastore(fullfile(spectrum_files,'/*.chn'), 'ReadFcn', @importdata);
+    file_list = dir(fullfile(spectrum_files,'/*.chn'));
 
 elseif filetype == "spe"
     disp("Select folder with .SPE files to count peaks from (one core only)")
     spectrum_files = uigetdir(); %add SPE spectrum file directory
-    fds = fileDatastore(fullfile(spectrum_files,'/*.spe'), 'ReadFcn', @importdata);
+    file_list = dir(fullfile(spectrum_files,'/*.spe'));
 
 end
-    
-fullFileNames = fds.Files;
+
+file_table = struct2table(file_list);
+fullFileNames = char(file_table.folder)+"\"+char(file_table.name);
 numFiles = length(fullFileNames);
 
 disp("Add Detector Background File (with regions of interest for each peak included)")
@@ -82,9 +84,9 @@ for i = 1 : numFiles
 %     fprintf('Now reading file %s\n', fullFileNames{i}); %Uncomment if you
 %     wish to see files being read in (for Quality Control)
     if filetype == "chn"
-        mcadat = readchn(fullFileNames{i},1);
+        mcadat = readchn(fullFileNames(i),1);
     elseif filetype =="spe"
-        mcadat = readspe(fullFileNames{i},1);
+        mcadat = readspe(fullFileNames(i),1);
     end
 
 %     plot(mcadat.energy,mcadat.count);   % plot counts versus energy
