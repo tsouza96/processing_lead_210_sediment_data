@@ -1,9 +1,16 @@
 # Processing Lead-210 (Pb-210) Alpha Spectrometry Data for Geochronology
 
+To get started, download or clone this repository (Green code button --> Download ZIP)
+Open selectpeaks.m and follow the user guide commented at the top of the file. 
+  This will read your raw detector files (.SPE or .CHN)
+  From this point, you can use the Raw Pb-210 data for interpretation, or continue
+If continuing - Open Process_Pb210_core_data.m and follow instructions 
+  to produce Age-Depth models. This section does not currently have functionality
+  for surface active zones. 
+
 <!--- - 👉 [**Get Started**](#install) -->
 - 📚 [View the **documentation**](https://github.com/tsouza96/processing_lead_210_sediment_data/blob/main/README.md)
 - 💬 [Chat with the **Geochronologists**](https://joshimmel.com)
-
 
 ## License
 
