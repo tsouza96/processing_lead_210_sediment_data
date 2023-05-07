@@ -11,7 +11,7 @@ To get started, download or clone this repository (Green code button --> Downloa
 
 <!--- - 👉 [**Get Started**](#install) -->
 - 📚 [View the **documentation**](https://github.com/tsouza96/processing_lead_210_sediment_data/blob/main/README.md)
-- 💬 [Chat with the **Geochronologists**](https://joshimmel.com)
+- 💬 [Chat with the **Geochronologists**](https://joshimmel.com/#contact)
 
 ## License
 
